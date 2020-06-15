@@ -1,0 +1,77 @@
+struct stat;
+struct rtcdate;
+struct user;
+struct group;
+
+// system calls
+int fork(void);
+int exit(void) __attribute__((noreturn));
+int wait(void);
+int pipe(int*);
+int write(int, const void*, int);
+int read(int, void*, int);
+int close(int);
+int kill(int);
+int exec(char*, char**);
+int open(const char*, int);
+int mknod(const char*, short, short);
+int unlink(const char*);
+int fstat(int fd, struct stat*);
+int link(const char*, const char*);
+int mkdir(const char*);
+int chdir(const char*);
+int dup(int);
+int getpid(void);
+char* sbrk(int);
+int sleep(int);
+int uptime(void);
+int clear(void);
+int getuid(void);
+int geteuid(void);
+int setuid(int);
+int chmod(int fd,int mode);
+int chown(int fd, int uid, int gid);
+int lseek(int,int,int);
+int rshow(void);
+int setgroups(int ngroups, int *gids);
+
+// ulib.c
+int stat(const char*, struct stat*);
+char* strcpy(char*, const char*);
+char* strncpy(char*, const char*, int);
+char* safestrcpy(char*, const char*, int);
+void *memmove(void*, const void*, int);
+char* strchr(const char*, char c);
+int strcmp(const char*, const char*);
+int strncmp(const char*, const char*,uint);
+void fprintf(int, const char*, ...);
+void printf(const char*, ...);
+char* gets(char*, int max);
+uint strlen(const char*);
+void* memset(void*, int, uint);
+void* malloc(uint);
+void free(void*);
+int atoi(const char*);
+int uchmod(const char*,int);
+int uchown(const char*,int,int);
+char* getline(char *,int,int);
+void copyf2f(int fd1,int fd2,int pos1,int pos2);
+
+//atest.c
+void  makeuser(char* buf,struct user* user);
+void  makegroup(char* buf,struct group* group);
+struct user* getuser(char*, char*);
+void  relsallusers(void);
+char* line2uname(char*);
+char* line2passwd(char*);
+int   line2uid(char*);
+int   line2gid(char*);
+char* line2rlname(char*);
+char* line2dir(char*);
+char* line2gname(char*);
+int   line2gid2(char*);
+char* line2nuser(char* line, int num);
+char* userToStr(struct user*);
+char* groupToStr(struct group*);
+void  uitoa(int num,char* buf);
+void  freecashe(const char* name);
